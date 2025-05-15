@@ -12,15 +12,18 @@ class MyQueue:
         self.stack1 = []
         self.stack2 = []
 
+    @staticmethod
+    def helper_pop_push(source, dest):
+        while source:
+            dest.append(source.pop())
+
     def push(self, x: int) -> None:
         self.stack1.append(x)
 
     def pop(self) -> int:
-        while self.stack1:
-            self.stack2.append(self.stack1.pop())
+        self.helper_pop_push(self.stack1, self.stack2)
         popped = self.stack2.pop()
-        while self.stack2:
-            self.stack1.append(self.stack2.pop())
+        self.helper_pop_push(self.stack2, self.stack1)
         return popped
 
     def peek(self) -> int:
