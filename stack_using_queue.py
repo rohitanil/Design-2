@@ -27,11 +27,9 @@ class MyQueue:
         return popped
 
     def peek(self) -> int:
-        while self.stack1:
-            self.stack2.append(self.stack1.pop())
+        self.helper_pop_push(self.stack1, self.stack2)
         peeked = self.stack2[-1]
-        while self.stack2:
-            self.stack1.append(self.stack2.pop())
+        self.helper_pop_push(self.stack2, self.stack1)
         return peeked
 
     def empty(self) -> bool:
